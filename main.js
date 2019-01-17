@@ -47,8 +47,15 @@ let requestUri = URI('https://1709506130841502.cn-beijing.fc.aliyuncs.com/2016-0
 // .toString();
 console.log('requestUri', requestUri);
 fetch(requestUri)
-.then((response) => response.json())
-.then((data) => {
+.then(response => response.json())
+.then(data => {
+    if (data.latitude === undefined || data.longitude === undefined) {
+        data.latitude = 39.904989;
+        data.longitude = 116.401165;
+    }
+    return data;
+})
+.then(data => {
     console.log('data', data);
     // data.latitude;
     // data.longitude;
